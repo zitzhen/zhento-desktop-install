@@ -9,13 +9,28 @@ final _log = Logger('flavor_provider');
 
 class FlavorService {
   @visibleForTesting
-  const FlavorService(this.flavor);
+  const FlavorService(this.flavor, {String? distroName})
+      : _distroName = distroName;
 
   static Future<FlavorService> load() async {
-    return FlavorService(await FlavorService._loadFlavor());
+    final flavor = await FlavorService._loadFlavor();
+    final configured =
+        await getService<ConfigService>().get<String>('distro-name');
+    final name = configured?.trim();
+    return FlavorService(
+      flavor,
+      distroName: (name?.isNotEmpty ?? false) ? name : null,
+    );
   }
 
   final UbuntuFlavor flavor;
+  final String? _distroName;
+
+  /// The name of the distribution to show in the UI.
+  ///
+  /// Defaults to the flavor's display name when not overridden in the
+  /// whitelabel config.
+  String get distroName => _distroName ?? flavor.displayName;
 
   static Future<UbuntuFlavor> _loadFlavor() async {
     final configService = getService<ConfigService>();

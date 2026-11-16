@@ -33,10 +33,48 @@ void main() {
         final configService = MockConfigService();
         when(configService.get<String>('flavor'))
             .thenAnswer((_) async => testCase.configFlavorName);
+        when(configService.get<String>('distro-name'))
+            .thenAnswer((_) async => null);
         registerMockService<ConfigService>(configService);
 
         final flavor = (await FlavorService.load()).flavor;
         expect(flavor, equals(testCase.expectedFlavor));
+      });
+    }
+  });
+
+  group('load distro name', () {
+    final testCases = [
+      (
+        displayName: 'distro name from config',
+        configDistroName: 'ZhenTo',
+        expectedName: 'ZhenTo',
+      ),
+      (
+        displayName: 'blank distro name falls back to flavor',
+        configDistroName: '   ',
+        expectedName: 'Ubuntu',
+      ),
+      (
+        displayName: 'missing distro name falls back to flavor',
+        configDistroName: null,
+        expectedName: 'Ubuntu',
+      ),
+    ];
+
+    tearDown(resetAllServices);
+
+    for (final testCase in testCases) {
+      test(testCase.displayName, () async {
+        final configService = MockConfigService();
+        when(configService.get<String>('flavor'))
+            .thenAnswer((_) async => 'ubuntu');
+        when(configService.get<String>('distro-name'))
+            .thenAnswer((_) async => testCase.configDistroName);
+        registerMockService<ConfigService>(configService);
+
+        final distroName = (await FlavorService.load()).distroName;
+        expect(distroName, equals(testCase.expectedName));
       });
     }
   });

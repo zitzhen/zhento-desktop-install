@@ -10,3 +10,13 @@ import 'package:ubuntu_service/ubuntu_service.dart';
 final flavorProvider = Provider(
   (_) => tryGetService<FlavorService>()?.flavor ?? UbuntuFlavor.ubuntu,
 );
+
+/// A provider that provides the distribution name shown in the UI.
+///
+/// This can be overridden with `distro-name` in the whitelabel config and
+/// falls back to the flavor's display name.
+final distroNameProvider = Provider<String>(
+  (_) =>
+      tryGetService<FlavorService>()?.distroName ??
+      UbuntuFlavor.ubuntu.displayName,
+);
