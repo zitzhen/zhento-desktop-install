@@ -236,6 +236,7 @@ Future<void> runInstallerApp(
             darkTheme: darkTheme,
             themeVariant: themeVariant,
             windowTitle: windowTitle,
+            distroName: flavorService.distroName,
             flavor: flavorService.flavor,
             init: getService<SubiquityServer>()
                 .start(args: subiquityArgs)
@@ -254,6 +255,7 @@ class _InstallerApp extends ConsumerWidget {
     required this.darkTheme,
     required this.themeVariant,
     required this.windowTitle,
+    required this.distroName,
     required this.flavor,
     required this.init,
   });
@@ -262,6 +264,7 @@ class _InstallerApp extends ConsumerWidget {
   final ThemeData? darkTheme;
   final ThemeVariant? themeVariant;
   final String? windowTitle;
+  final String distroName;
   final UbuntuFlavor flavor;
   final Future<void> init;
 
@@ -273,8 +276,7 @@ class _InstallerApp extends ConsumerWidget {
       darkTheme: darkTheme ?? themeVariant?.darkTheme,
       onGenerateTitle: (context) {
         if (windowTitle != null) return windowTitle!;
-        return UbuntuBootstrapLocalizations.of(context)
-            .windowTitle(flavor.displayName);
+        return UbuntuBootstrapLocalizations.of(context).windowTitle(distroName);
       },
       locale: ref.watch(localeProvider),
       localizationsDelegates: GlobalUbuntuBootstrapLocalizations.delegates,

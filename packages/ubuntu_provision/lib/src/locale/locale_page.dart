@@ -21,13 +21,13 @@ class LocalePage extends ConsumerWidget with ProvisioningPage {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
     final model = ref.watch(localeModelProvider);
     final lang = LocaleLocalizations.of(context);
     final nextFocusNode = ref.watch(_nextFocusNodeProvider);
 
     return HorizontalPage(
-      windowTitle: lang.localePageTitle(flavor.displayName),
+      windowTitle: lang.localePageTitle(distroName),
       title: lang.localeHeader,
       managedScrolling: false,
       contentFlex: 4,

@@ -52,8 +52,7 @@ class GuidedResizePage extends ConsumerWidget {
     final lang = UbuntuBootstrapLocalizations.of(context);
     return HorizontalPage(
       windowTitle: _formatTitle(context, ref),
-      title:
-          lang.guidedStoragePageHeader(ref.watch(flavorProvider).displayName),
+      title: lang.guidedStoragePageHeader(ref.watch(distroNameProvider)),
       bottomBar: WizardBar(
         leading: const BackWizardButton(),
         trailing: [

@@ -45,7 +45,7 @@ class ActiveDirectoryPage extends ConsumerWidget with ProvisioningPage {
         ],
       ),
       children: [
-        Text(lang.activeDirectoryInfo(ref.watch(flavorProvider).displayName)),
+        Text(lang.activeDirectoryInfo(ref.watch(distroNameProvider))),
         const SizedBox(height: kWizardSpacing),
         const DomainNameFormField(),
         const SizedBox(height: kWizardSpacing),

@@ -19,11 +19,11 @@ class AutoinstallPage extends ConsumerWidget with ProvisioningPage {
   Widget build(BuildContext context, WidgetRef ref) {
     final lang = UbuntuBootstrapLocalizations.of(context);
     final autoinstallModel = ref.watch(autoinstallModelProvider);
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
 
     return HorizontalPage(
       windowTitle: lang.autoinstallTitle,
-      title: lang.autoinstallHeader(flavor.displayName),
+      title: lang.autoinstallHeader(distroName),
       bottomBar: WizardBar(
         leading: const BackWizardButton(),
         trailing: [

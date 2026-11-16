@@ -41,11 +41,10 @@ class GuidedReformatPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final model = ref.watch(guidedReformatModelProvider);
     final lang = UbuntuBootstrapLocalizations.of(context);
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
     return HorizontalPage(
-      windowTitle: lang.selectGuidedStoragePageTitle(flavor.displayName),
-      title:
-          lang.guidedStoragePageHeader(ref.watch(flavorProvider).displayName),
+      windowTitle: lang.selectGuidedStoragePageTitle(distroName),
+      title: lang.guidedStoragePageHeader(distroName),
       bottomBar: WizardBar(
         leading: const BackWizardButton(),
         trailing: [
@@ -94,13 +93,13 @@ class GuidedReformatPage extends ConsumerWidget {
                     SizedBox.square(
                       dimension: 32,
                       child: StorageIcon(
-                        name: flavor.displayName,
+                        name: distroName,
                         useCustomIcon: true,
                       ),
                     ),
                     const SizedBox(width: kWizardBarSpacing),
                     Text(
-                      flavor.displayName,
+                      distroName,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(width: kWizardSpacing),

@@ -17,13 +17,13 @@ class LoadingPage extends ConsumerWidget with ProvisioningPage {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
     final lang = UbuntuBootstrapLocalizations.of(context);
     final style = Theme.of(context).textTheme.headlineSmall!;
 
     return WizardPage(
       title: YaruWindowTitleBar(
-        title: Text(lang.loadingPageTitle(flavor.displayName)),
+        title: Text(lang.loadingPageTitle(distroName)),
         closeSemanticLabel: lang.closeIconSemanticLabel,
         maximizeSemanticLabel: lang.maximizeIconSemanticLabel,
         minimizeSemanticLabel: lang.minimizeIconSemanticLabel,
@@ -39,7 +39,7 @@ class LoadingPage extends ConsumerWidget with ProvisioningPage {
             ),
           ),
           const SizedBox(height: kWizardSpacing * 2),
-          Text(lang.loadingHeader(flavor.displayName), style: style),
+          Text(lang.loadingHeader(distroName), style: style),
         ],
       ),
     );

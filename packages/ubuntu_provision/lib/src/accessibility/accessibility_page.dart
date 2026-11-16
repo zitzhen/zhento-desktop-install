@@ -17,18 +17,18 @@ class AccessibilityPage extends ConsumerWidget with ProvisioningPage {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
     final lang = UbuntuProvisionLocalizations.of(context);
 
     return HorizontalPage(
       windowTitle: lang.accessibilityPageTitle,
-      title: lang.accessibilityPageHeader(flavor.displayName),
+      title: lang.accessibilityPageHeader(distroName),
       bottomBar: const WizardBar(
         leading: BackWizardButton(),
         trailing: [NextWizardButton()],
       ),
       children: [
-        Text(lang.accessibilityPageBody(flavor.displayName)),
+        Text(lang.accessibilityPageBody(distroName)),
         const SizedBox(height: kWizardSpacing),
         YaruExpansionPanel(
           shrinkWrap: true,
