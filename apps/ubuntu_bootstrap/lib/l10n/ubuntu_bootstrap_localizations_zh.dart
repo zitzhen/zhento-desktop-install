@@ -9,7 +9,7 @@ class UbuntuBootstrapLocalizationsZh extends UbuntuBootstrapLocalizations {
   UbuntuBootstrapLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'Ubuntu 桌面安装程序';
+  String get appTitle => 'ZhenTo 安装程序';
 
   @override
   String windowTitle(String RELEASE) {
@@ -1315,7 +1315,7 @@ class UbuntuBootstrapLocalizationsZh extends UbuntuBootstrapLocalizations {
   }
 
   @override
-  String get landscapeConfirmPageSuccessInfoTitle => 'Ubuntu 将按您组织提供的配置进行安装';
+  String get landscapeConfirmPageSuccessInfoTitle => 'ZhenTo 将按您组织提供的配置进行安装';
 
   @override
   String get landscapeConfirmPageSuccessInfoContent =>

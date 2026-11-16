@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "Ubuntu Desktop Installer",
+  "appTitle": "ZhenTo Installer",
   "windowTitle": "Install {RELEASE}",
   "@windowTitle": {
     "placeholders": {
@@ -1017,7 +1017,7 @@
       }
     }
   },
-  "landscapeConfirmPageSuccessInfoTitle": "Ubuntu will install with the configuration provided by your organization",
+  "landscapeConfirmPageSuccessInfoTitle": "ZhenTo will install with the configuration provided by your organization",
   "@landscapeConfirmPageSuccessInfoTitle": {},
   "landscapeConfirmPageSuccessInfoContent": "You can review the autoinstall file imported from Landscape below.",
   "@landscapeConfirmPageSuccessInfoContent": {},

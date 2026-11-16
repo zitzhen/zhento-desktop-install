@@ -92,7 +92,7 @@
   "@ubuntuProOrAddTokenManually": {},
   "ubuntuProTokenTextfieldHint": "Token",
   "@ubuntuProTokenTextfieldHint": {},
-  "ubuntuProSubscriptionDescription": "Get the most comprehensive subscription for open-source software security",
+  "ubuntuProSubscriptionDescription": "ZhenTo is built on Ubuntu. Get Ubuntu Pro for the most comprehensive open-source security coverage.",
   "@ubuntuProSubscriptionDescription": {},
   "ubuntuProSubscriptionFreeForPersonalUse": "Always free for personal use. 30-days trial for enterprises. <a href=\"https://{url}\">Learn more</a>",
   "@ubuntuProSubscriptionFreeForPersonalUse": {
@@ -116,7 +116,7 @@
   "@ubuntuProOnBoardingSkipForNowDescription": {},
   "ubuntuProOnBoardingEnableUbuntuPro": "Enable Ubuntu Pro",
   "@ubuntuProOnBoardingEnableUbuntuPro": {},
-  "ubuntuProOnBoardingEnableUbuntuProDescription": "Attach this machine to an Ubuntu Pro subscription for security updates on a wider range of packages, until 2032.",
+  "ubuntuProOnBoardingEnableUbuntuProDescription": "Attach this machine to an Ubuntu Pro subscription for security updates on a wider range of packages.",
   "@ubuntuProOnBoardingEnableUbuntuProDescription": {},
   "ubuntuProSucessAttachHeader": "Ubuntu Pro is now enabled in this machine",
   "@ubuntuProSucessAttachHeader": {},
