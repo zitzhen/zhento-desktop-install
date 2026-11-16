@@ -1,0 +1,67 @@
+name: ZhenTo CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+      - 'edit/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zhento-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  MELOS_SDK_PATH: auto
+
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.6'
+          channel: stable
+          cache: true
+
+      - name: Bootstrap workspace
+        run: |
+          dart pub get
+          dart run melos bootstrap
+
+      - name: Analyze
+        run: dart run melos analyze --fatal-infos
+
+      - name: Check formatting
+        run: |
+          find apps packages -name '*.dart' \
+            ! -name '*.freezed.dart' \
+            ! -name '*.g.dart' \
+            ! -name '*.mocks.dart' \
+            ! -path '*/l10n/*' \
+            ! -name '*.pb*.dart' \
+            | xargs dart format --output=none --set-exit-if-changed
+
+      - name: Check generated l10n
+        run: |
+          for dir in \
+            apps/factory_reset_tools \
+            apps/ubuntu_bootstrap \
+            apps/ubuntu_init \
+            packages/ubuntu_provision
+          do
+            (cd "$dir" && flutter gen-l10n)
+          done
+          git diff --exit-code

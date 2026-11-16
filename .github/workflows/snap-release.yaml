@@ -1,9 +1,7 @@
 name: Release Snaps
 
 on:
-  pull_request:
-    types:
-      - closed
+  workflow_dispatch:
 
 jobs:
   get-snap-branches:
