@@ -1,0 +1,56 @@
+name: Build installer snap
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-installer-snap-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  snap:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@ceedf095f4ec1a097402bc6bd80831f2e1a6fde6 # v2.0.0
+        with:
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          preinstalled-runtimes: true
+          swap-storage: false
+
+      - name: Build snap
+        id: build
+        uses: snapcore/action-build@v1
+
+      - name: Upload snap artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zhento-desktop-bootstrap-snap
+          path: ${{ steps.build.outputs.snap }}
+          retention-days: 14
+
+      - name: Write summary
+        run: |
+          {
+            echo '### Installer snap built'
+            echo '```'
+            ls -lh "${{ steps.build.outputs.snap }}"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
