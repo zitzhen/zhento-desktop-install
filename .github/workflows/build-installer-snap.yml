@@ -2,12 +2,17 @@ name: Build installer snap
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: '版本号（不带 v，如 0.1.0）'
+        required: true
+        default: '0.1.0'
   push:
     tags:
       - 'v*'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: build-installer-snap-${{ github.ref }}
@@ -35,16 +40,63 @@ jobs:
           preinstalled-runtimes: true
           swap-storage: false
 
+      - name: Compute version
+        id: meta
+        run: |
+          set -e
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            VERSION="${{ inputs.version }}"
+            TAG="v${VERSION}"
+          else
+            TAG="${GITHUB_REF_NAME}"
+            VERSION="${TAG#v}"
+          fi
+          [ -n "$VERSION" ] || { echo "XX 版本号为空" >&2; exit 1; }
+          {
+            echo "version=${VERSION}"
+            echo "tag=${TAG}"
+          } >> "$GITHUB_OUTPUT"
+          echo "版本：${VERSION}（标签：${TAG}）"
+
       - name: Build snap
         id: build
         uses: snapcore/action-build@v1
+
+      - name: Generate checksum
+        run: |
+          sha256sum "${{ steps.build.outputs.snap }}" \
+            > "${{ steps.build.outputs.snap }}.sha256"
 
       - name: Upload snap artifact
         uses: actions/upload-artifact@v4
         with:
           name: zhento-desktop-bootstrap-snap
-          path: ${{ steps.build.outputs.snap }}
+          path: |
+            ${{ steps.build.outputs.snap }}
+            ${{ steps.build.outputs.snap }}.sha256
           retention-days: 14
+
+      - name: Create draft release
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: ZhenTo Installer ${{ steps.meta.outputs.version }}
+          draft: true
+          prerelease: false
+          fail_on_unmatched_files: true
+          files: |
+            ${{ steps.build.outputs.snap }}
+            ${{ steps.build.outputs.snap }}.sha256
+          body: |
+            ZhenTo Installer ${{ steps.meta.outputs.version }}（snap 草稿）
+
+            ## 文件说明
+
+            - `ubuntu-desktop-bootstrap_${{ steps.meta.outputs.version }}_*.snap`：安装器 snap，供 ISO 注入或本地 `snap install --dangerous` 测试
+            - `*.snap.sha256`：snap 的 sha256 校验文件
+
+            > 这是自动生成的草稿 Release，确认无误后再发布。
 
       - name: Write summary
         run: |
