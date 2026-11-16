@@ -1,6 +1,6 @@
 {
     "@@locale": "zh",
-    "appTitle": "Ubuntu 桌面安装程序",
+    "appTitle": "ZhenTo 安装程序",
     "windowTitle": "安装 {RELEASE}",
     "changeButtonText": "更改",
     "welcome": "欢迎",
@@ -444,7 +444,7 @@
             }
         }
     },
-    "landscapeConfirmPageSuccessInfoTitle": "Ubuntu 将按您组织提供的配置进行安装",
+    "landscapeConfirmPageSuccessInfoTitle": "ZhenTo 将按您组织提供的配置进行安装",
     "landscapeConfirmPageSuccessInfoContent": "您可以在下面查看从 Landscape 导入的自动安装文件。",
     "successIconSemanticLabel": "成功",
     "errorIconSemanticLabel": "错误",

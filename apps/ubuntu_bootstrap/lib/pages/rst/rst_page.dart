@@ -23,7 +23,7 @@ class RstPage extends ConsumerWidget with ProvisioningPage {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
     final model = ref.watch(rstModelProvider);
     final lang = UbuntuBootstrapLocalizations.of(context);
     return HorizontalPage(
@@ -55,7 +55,7 @@ class RstPage extends ConsumerWidget with ProvisioningPage {
               final confirmed = await showConfirmationDialog(
                 context,
                 title: lang.restartComputerTitle,
-                message: lang.restartIntoWindowsDescription(flavor.displayName),
+                message: lang.restartIntoWindowsDescription(distroName),
                 okLabel: UbuntuLocalizations.of(context).restartLabel,
                 okElevated: true,
               );

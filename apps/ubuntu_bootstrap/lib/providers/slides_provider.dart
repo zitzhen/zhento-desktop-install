@@ -10,14 +10,13 @@ import 'package:intl/intl.dart' hide TextDirection;
 import 'package:intl/intl_standalone.dart';
 import 'package:path/path.dart' as path;
 import 'package:ubuntu_bootstrap/providers/slide_html.dart';
-import 'package:ubuntu_flavor/ubuntu_flavor.dart';
 import 'package:ubuntu_logger/ubuntu_logger.dart';
 import 'package:ubuntu_provision/ubuntu_provision.dart';
 
 final slidesProvider = Provider(
   (ref) => SlidesModel(
     brightness: ref.watch(brightnessProvider),
-    flavor: ref.watch(flavorProvider),
+    distroName: ref.watch(distroNameProvider),
   ),
 );
 
@@ -27,26 +26,26 @@ final _log = Logger('slides');
 class SlidesModel {
   factory SlidesModel({
     required Brightness brightness,
-    required UbuntuFlavor flavor,
+    required String distroName,
   }) =>
       _instance
         .._brightness = brightness
-        .._flavor = flavor;
+        .._distroName = distroName;
 
   @visibleForTesting
   SlidesModel.internal({
     required Brightness brightness,
-    required UbuntuFlavor flavor,
+    required String distroName,
   })  : _brightness = brightness,
-        _flavor = flavor;
+        _distroName = distroName;
 
   static final SlidesModel _instance = SlidesModel.internal(
-    flavor: UbuntuFlavor.ubuntu,
     brightness: Brightness.light,
+    distroName: 'Ubuntu',
   );
 
   Brightness _brightness;
-  UbuntuFlavor _flavor;
+  String _distroName;
   final List<SlideHtml> _slides = [];
   final List<SlideHtml> _slidesDark = [];
 
@@ -129,7 +128,7 @@ class SlidesModel {
 
       final flavorSpecificContent = content.replaceAll(
         RegExp(r'{{\s*DISTRO\s*}}'),
-        _flavor.displayName,
+        _distroName,
       );
 
       final bundledHtml = await _replaceImages(

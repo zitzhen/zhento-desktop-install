@@ -1,3 +1,16 @@
+app-name: ZhenTo
+distro-name: ZhenTo
+
+theme:
+  light:
+    accent-color: "#1E88E5"
+    elevated-button-color: "#1565C0"
+    elevated-button-text-color: "#FFFFFF"
+  dark:
+    accent-color: "#64B5F6"
+    elevated-button-color: "#1E88E5"
+    elevated-button-text-color: "#FFFFFF"
+
 pages:
   locale:
     image: "assets/images/logo-light.svg"

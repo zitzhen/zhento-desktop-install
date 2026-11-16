@@ -421,7 +421,7 @@ abstract class UbuntuInitLocalizations {
   /// No description provided for @ubuntuProSubscriptionDescription.
   ///
   /// In en, this message translates to:
-  /// **'Get the most comprehensive subscription for open-source software security'**
+  /// **'ZhenTo is built on Ubuntu. Get Ubuntu Pro for the most comprehensive open-source security coverage.'**
   String get ubuntuProSubscriptionDescription;
 
   /// No description provided for @ubuntuProSubscriptionFreeForPersonalUse.
@@ -475,7 +475,7 @@ abstract class UbuntuInitLocalizations {
   /// No description provided for @ubuntuProOnBoardingEnableUbuntuProDescription.
   ///
   /// In en, this message translates to:
-  /// **'Attach this machine to an Ubuntu Pro subscription for security updates on a wider range of packages, until 2032.'**
+  /// **'Attach this machine to an Ubuntu Pro subscription for security updates on a wider range of packages.'**
   String get ubuntuProOnBoardingEnableUbuntuProDescription;
 
   /// No description provided for @ubuntuProSucessAttachHeader.

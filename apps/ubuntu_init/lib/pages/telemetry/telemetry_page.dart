@@ -20,21 +20,21 @@ class TelemetryPage extends ConsumerWidget with ProvisioningPage {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
     final l10n = TelemetryLocalizations.of(context);
     final model = ref.watch(telemetryModelProvider);
 
     return HorizontalPage(
       windowTitle: l10n.telemetryPageTitle,
-      title: l10n.telemetryHeader(flavor.displayName),
+      title: l10n.telemetryHeader(distroName),
       onNext: model.save,
       children: [
         Text(
-          l10n.telemetryDescription(flavor.displayName),
+          l10n.telemetryDescription(distroName),
         ),
         const SizedBox(height: kWizardSpacing),
         TelemetryButton(
-          title: Text(l10n.telemetryLabelOn(flavor.displayName)),
+          title: Text(l10n.telemetryLabelOn(distroName)),
           value: true,
           groupValue: model.enabled,
           onChanged: (v) => model.enabled = v!,

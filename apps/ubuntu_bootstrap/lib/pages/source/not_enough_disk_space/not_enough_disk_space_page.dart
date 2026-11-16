@@ -19,7 +19,7 @@ class NotEnoughDiskSpacePage extends ConsumerWidget with ProvisioningPage {
   Widget build(BuildContext context, WidgetRef ref) {
     final model = ref.watch(notEnoughDiskSpaceModelProvider);
     final lang = UbuntuBootstrapLocalizations.of(context);
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
     final theme = Theme.of(context);
     final boldTextTheme = Theme.of(context)
         .textTheme
@@ -28,12 +28,12 @@ class NotEnoughDiskSpacePage extends ConsumerWidget with ProvisioningPage {
 
     return HorizontalPage(
       windowTitle: lang.notEnoughDiskSpaceTitle,
-      title: lang.notEnoughDiskSpaceUbuntu(flavor.displayName),
+      title: lang.notEnoughDiskSpaceUbuntu(distroName),
       bottomBar: const WizardBar(
         leading: BackWizardButton(),
       ),
       children: [
-        Text(lang.notEnoughDiskSpaceBody(flavor.displayName)),
+        Text(lang.notEnoughDiskSpaceBody(distroName)),
         Table(
           defaultColumnWidth: const IntrinsicColumnWidth(),
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,

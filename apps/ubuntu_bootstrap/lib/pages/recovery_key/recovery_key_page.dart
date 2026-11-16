@@ -188,10 +188,10 @@ class _RecoveryKeyDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = UbuntuBootstrapLocalizations.of(context);
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
     return AlertDialog(
       title: YaruDialogTitleBar(
-        title: Text(l10n.recoveryKeyQrDialogTitle(flavor.displayName)),
+        title: Text(l10n.recoveryKeyQrDialogTitle(distroName)),
       ),
       titlePadding: EdgeInsets.zero,
       content: ConstrainedBox(

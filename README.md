@@ -50,6 +50,10 @@ flavor: <name>
 # (Optional) Sets the window's title (e.g. the text in alt|super + tab)
 app-name: <string>
 
+# (Optional) Sets the distribution name shown in the UI, overriding the
+# flavor's display name. Defaults to the flavor's display name.
+distro-name: <string>
+
 # (Optional) Overrides the theme's accent colors (remember the quotes)
 theme:
   light:

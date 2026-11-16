@@ -51,7 +51,7 @@ class StoragePage extends ConsumerWidget with ProvisioningPage {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final lang = UbuntuBootstrapLocalizations.of(context);
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
     final theme = Theme.of(context);
 
     final (
@@ -80,7 +80,7 @@ class StoragePage extends ConsumerWidget with ProvisioningPage {
 
     return HorizontalPage(
       windowTitle: lang.installationTypeTitle,
-      title: lang.installationTypeHeader(flavor.displayName),
+      title: lang.installationTypeHeader(distroName),
       bottomBar: Builder(
         builder: (context) {
           final notifier = ref.read(storageModelProvider.notifier);
@@ -115,12 +115,12 @@ class StoragePage extends ConsumerWidget with ProvisioningPage {
             title: Text(
               formatAlongside(
                 lang,
-                flavor.displayName,
+                distroName,
                 existingOS ?? [],
               ),
             ),
             subtitle: Text(
-              lang.installationTypeAlongsideInfo(flavor.displayName),
+              lang.installationTypeAlongsideInfo(distroName),
               style: theme.textTheme.bodySmall!.copyWith(
                 color: canInstallAlongside ? null : theme.disabledColor,
               ),
@@ -141,7 +141,7 @@ class StoragePage extends ConsumerWidget with ProvisioningPage {
                       title: Text(
                         lang.installationTypeEraseAndInstall(
                           notifier.getEraseInstallOsName(target) ?? 'unknown',
-                          flavor.displayName,
+                          distroName,
                         ),
                       ),
                       subtitle: _WarningSubtitle(
@@ -156,7 +156,7 @@ class StoragePage extends ConsumerWidget with ProvisioningPage {
         if (canEraseDisk) ...[
           _InstallationTypeTile(
             storageType: StorageType.erase,
-            title: Text(lang.installationTypeErase(flavor.displayName)),
+            title: Text(lang.installationTypeErase(distroName)),
             subtitle: _WarningSubtitle(text: lang.installationTypeEraseInfo),
           ),
         ],
@@ -165,7 +165,7 @@ class StoragePage extends ConsumerWidget with ProvisioningPage {
             storageType: StorageType.manual,
             title: Text(lang.installationTypeManual),
             subtitle: Text(
-              lang.installationTypeManualInfo(flavor.displayName),
+              lang.installationTypeManualInfo(distroName),
             ),
           ),
       ].withSpacing(kWizardSpacing / 2),

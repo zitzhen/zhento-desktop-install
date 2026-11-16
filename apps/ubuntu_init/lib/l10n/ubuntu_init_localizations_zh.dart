@@ -108,7 +108,8 @@ class UbuntuInitLocalizationsZh extends UbuntuInitLocalizations {
   String get ubuntuProTokenTextfieldHint => '令牌';
 
   @override
-  String get ubuntuProSubscriptionDescription => '为开源软件安全获取最为包罗万象的订阅';
+  String get ubuntuProSubscriptionDescription =>
+      'ZhenTo 基于 Ubuntu 构建，可订阅 Ubuntu Pro，获得最全面的开源软件安全支持。';
 
   @override
   String ubuntuProSubscriptionFreeForPersonalUse(String url) {
@@ -139,7 +140,7 @@ class UbuntuInitLocalizationsZh extends UbuntuInitLocalizations {
 
   @override
   String get ubuntuProOnBoardingEnableUbuntuProDescription =>
-      '将此机器绑定到 Ubuntu Pro 以在 2032 年前获得更多软件安全更新。';
+      '将本机绑定到 Ubuntu Pro 订阅，为更广泛的软件包获取安全更新。';
 
   @override
   String get ubuntuProSucessAttachHeader => '此机器现已启用 Ubuntu Pro';

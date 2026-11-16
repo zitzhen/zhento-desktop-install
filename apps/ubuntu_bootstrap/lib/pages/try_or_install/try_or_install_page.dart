@@ -21,11 +21,11 @@ class TryOrInstallPage extends ConsumerWidget with ProvisioningPage {
   Widget build(BuildContext context, WidgetRef ref) {
     final model = ref.watch(tryOrInstallModelProvider);
     final lang = UbuntuBootstrapLocalizations.of(context);
-    final flavor = ref.watch(flavorProvider);
+    final distroName = ref.watch(distroNameProvider);
 
     return HorizontalPage(
-      windowTitle: lang.tryOrInstallTitle(flavor.displayName),
-      title: lang.tryOrInstallHeader(flavor.displayName),
+      windowTitle: lang.tryOrInstallTitle(distroName),
+      title: lang.tryOrInstallHeader(distroName),
       bottomBar: WizardBar(
         leading: const BackWizardButton(),
         trailing: [
@@ -51,16 +51,16 @@ class TryOrInstallPage extends ConsumerWidget with ProvisioningPage {
         OptionButton(
           value: TryOrInstallOption.installUbuntu,
           groupValue: model.option,
-          title: Text(lang.installOption(flavor.displayName)),
-          subtitle: Text(lang.installDescription(flavor.displayName)),
+          title: Text(lang.installOption(distroName)),
+          subtitle: Text(lang.installDescription(distroName)),
           onChanged: (value) => model.selectOption(value!),
         ),
         const SizedBox(height: kWizardSpacing / 2),
         OptionButton(
           value: TryOrInstallOption.tryUbuntu,
           groupValue: model.option,
-          title: Text(lang.tryOption(flavor.displayName)),
-          subtitle: Text(lang.tryDescription(flavor.displayName)),
+          title: Text(lang.tryOption(distroName)),
+          subtitle: Text(lang.tryDescription(distroName)),
           onChanged: (value) => model.selectOption(value!),
         ),
       ],

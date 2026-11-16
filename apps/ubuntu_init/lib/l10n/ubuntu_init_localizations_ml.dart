@@ -112,7 +112,7 @@ class UbuntuInitLocalizationsMl extends UbuntuInitLocalizations {
 
   @override
   String get ubuntuProSubscriptionDescription =>
-      'Get the most comprehensive subscription for open-source software security';
+      'ZhenTo is built on Ubuntu. Get Ubuntu Pro for the most comprehensive open-source security coverage.';
 
   @override
   String ubuntuProSubscriptionFreeForPersonalUse(String url) {
@@ -143,7 +143,7 @@ class UbuntuInitLocalizationsMl extends UbuntuInitLocalizations {
 
   @override
   String get ubuntuProOnBoardingEnableUbuntuProDescription =>
-      'Attach this machine to an Ubuntu Pro subscription for security updates on a wider range of packages, until 2032.';
+      'Attach this machine to an Ubuntu Pro subscription for security updates on a wider range of packages.';
 
   @override
   String get ubuntuProSucessAttachHeader =>

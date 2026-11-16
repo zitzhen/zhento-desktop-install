@@ -9,7 +9,7 @@ class UbuntuBootstrapLocalizationsKu extends UbuntuBootstrapLocalizations {
   UbuntuBootstrapLocalizationsKu([String locale = 'ku']) : super(locale);
 
   @override
-  String get appTitle => 'Ubuntu Desktop Installer';
+  String get appTitle => 'ZhenTo Installer';
 
   @override
   String windowTitle(String RELEASE) {
@@ -1384,7 +1384,7 @@ class UbuntuBootstrapLocalizationsKu extends UbuntuBootstrapLocalizations {
 
   @override
   String get landscapeConfirmPageSuccessInfoTitle =>
-      'Ubuntu will install with the configuration provided by your organization';
+      'ZhenTo will install with the configuration provided by your organization';
 
   @override
   String get landscapeConfirmPageSuccessInfoContent =>

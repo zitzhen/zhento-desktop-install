@@ -1387,7 +1387,7 @@ class UbuntuBootstrapLocalizationsNb extends UbuntuBootstrapLocalizations {
 
   @override
   String get landscapeConfirmPageSuccessInfoTitle =>
-      'Ubuntu will install with the configuration provided by your organization';
+      'ZhenTo will install with the configuration provided by your organization';
 
   @override
   String get landscapeConfirmPageSuccessInfoContent =>

@@ -247,7 +247,7 @@ abstract class UbuntuBootstrapLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Ubuntu Desktop Installer'**
+  /// **'ZhenTo Installer'**
   String get appTitle;
 
   /// No description provided for @windowTitle.
@@ -2456,7 +2456,7 @@ abstract class UbuntuBootstrapLocalizations {
   /// No description provided for @landscapeConfirmPageSuccessInfoTitle.
   ///
   /// In en, this message translates to:
-  /// **'Ubuntu will install with the configuration provided by your organization'**
+  /// **'ZhenTo will install with the configuration provided by your organization'**
   String get landscapeConfirmPageSuccessInfoTitle;
 
   /// No description provided for @landscapeConfirmPageSuccessInfoContent.
